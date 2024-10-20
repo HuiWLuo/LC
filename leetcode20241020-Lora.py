@@ -32,7 +32,7 @@ class Solution:
                 res.append(j - len(p) +1)
         return res
 
-567. Permutation in String
+#567. Permutation in String
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         mp = defaultdict(int)
