@@ -32,9 +32,9 @@ class Solution:
                 return 0
             if grid2[i][j] == -1:
                 return -1
-            if grid2[i][j] == 0: # water / checked
+            if grid2[i][j] == 0: 
                 return 0
-            if grid2[i][j] == 1 and grid1[i][j] == 0: # not fully included
+            if grid2[i][j] == 1 and grid1[i][j] == 0:
                 grid2[i][j] = -1
                 return -1
 
@@ -56,4 +56,41 @@ class Solution:
                 if grid2[i][j] == 1 and dfs(i, j) > 0:
                     ans += 1
 
-        return ans
+        return and
+
+#1254. Number of Closed Islands
+class Solution:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+
+        self.touches_edge = False
+
+        closed_islands = 0 
+
+        def valid_traversal(row, col): 
+            return row >= 0 and row < rows and col >= 0 and col < cols
+
+        def closed_island_helper(row, col): 
+            if not valid_traversal(row, col): 
+                self.touches_edge = True 
+                return
+            if not grid[row][col] == 0: 
+                return 
+            grid[row][col] = 1
+            closed_island_helper(row-1, col)
+            closed_island_helper(row+1, col)
+            closed_island_helper(row, col-1)
+            closed_island_helper(row, col+1)
+
+        for row in range(rows):
+            for col in range(cols): 
+                if grid[row][col] == 0:
+                    closed_island_helper(row, col)
+                    if not self.touches_edge:
+                        closed_islands += 1
+                    self.touches_edge = False  
+        
+        return closed_islands 
+
+
+
