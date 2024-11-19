@@ -1,7 +1,6 @@
 # 47. Permutations II
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-
         def backtrack(start):
             if start == len(nums):
                 res.append(nums[:])
